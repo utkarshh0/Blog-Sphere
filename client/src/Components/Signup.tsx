@@ -1,26 +1,38 @@
 import { useState } from "react";
 import LabelledInput from "./LabelledInput";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 interface SignupProps {
     onClick: (value: boolean) => void;
 }
 
-const Signup: React.FC<SignupProps> = ({ onClick }) => {
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: ''
-    });
-    const [formError, setFormError] = useState({
-        username: '',
-        email: '',
-        password: ''
-    });
-    const [serverError, setServerError] = useState('')
+interface FormData {
+    username: string;
+    email: string;
+    password: string;
+}
 
-    const validate = () => {
-        const newErrors: { username?: string; email?: string; password?: string } = {};
+interface FormErrorProps {
+    username?: string;
+    email?: string;
+    password?: string;
+}
+
+interface ErrorResponse {
+    error?: string;
+}
+
+const Signup: React.FC<SignupProps> = ({ onClick }) => {
+    const [formData, setFormData] = useState<FormData>({
+        username: '',
+        email: '',
+        password: ''
+    });
+    const [formError, setFormError] = useState<FormErrorProps>({});
+    const [serverError, setServerError] = useState('');
+
+    const validate = (): boolean => {
+        const newErrors: FormErrorProps = {};
 
         if (!formData.username) newErrors.username = 'Username is required';
         if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Valid Email is required';
@@ -34,15 +46,16 @@ const Signup: React.FC<SignupProps> = ({ onClick }) => {
         e.preventDefault();
         if (validate()) {
             try {
-                await axios.post('http://localhost:3000/api/v1/user/signup', formData)
-                onClick(true)
+                await axios.post('http://localhost:3000/api/v1/user/signup', formData);
+                onClick(true);
                 setFormData({
                     username: '',
                     email: '',
                     password: ''
-                })
-            } catch (error: any) {
-                setServerError(error.response?.data?.error || 'Something went wrong. Please try again.');
+                });
+            } catch (error) {
+                const axiosError = error as AxiosError<ErrorResponse>;
+                setServerError(axiosError.response?.data?.error || 'Something went wrong. Please try again.');
             }
         }
     };

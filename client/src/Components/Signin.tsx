@@ -1,10 +1,19 @@
 import { useState } from "react";
 import LabelledInput from "./LabelledInput";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 
 interface SigninProps {
     onClick: (value: boolean) => void;
+}
+
+interface FormErrorProps {
+    email?: string;
+    password?: string;
+}
+
+interface ErrorResponse {
+    error?: string;
 }
 
 const Signin: React.FC<SigninProps> = ({ onClick }) => {
@@ -12,15 +21,12 @@ const Signin: React.FC<SigninProps> = ({ onClick }) => {
         email: '',
         password: ''
     });
-    const [formError, setFormError] = useState({
-        email: '',
-        password: ''
-    });
+    const [formError, setFormError] = useState<FormErrorProps>({});
     const [serverError, setServerError] = useState('');
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const validate = () => {
-        const newErrors: { email?: string; password?: string } = {};
+        const newErrors: FormErrorProps = {};
 
         if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Valid Email is required';
         if (!formData.password || formData.password.length < 6) newErrors.password = 'Password is required and should be greater than or equal to 6';
@@ -33,14 +39,15 @@ const Signin: React.FC<SigninProps> = ({ onClick }) => {
         e.preventDefault();
         if (validate()) {
             try {
-                const response = await axios.post('http://localhost:3000/api/v1/user/signin', {
+                const response = await axios.post(`http://localhost:3000/api/v1/user/signin`, {
                     email: formData.email,
                     password: formData.password
-                })
-                localStorage.setItem('token', `Bearer ${response.data.token}`)
-                navigate('blog')
-            } catch (error: any) {
-                setServerError(error.response?.data?.error || 'Something went wrong. Please try again.');
+                });
+                localStorage.setItem('token', `Bearer ${response.data.token}`);
+                navigate('blog');
+            } catch (error) {
+                const axiosError = error as AxiosError<ErrorResponse>;
+                setServerError(axiosError.response?.data?.error || 'Something went wrong. Please try again.');
             }
         }
     };
@@ -85,11 +92,11 @@ const Signin: React.FC<SigninProps> = ({ onClick }) => {
                             error={formError.password}
                         />
                         {serverError && (
-                            <p className="text-red-500 float-righttext-sm text-center mb-4">{serverError}</p>
+                            <p className="text-red-500 text-sm text-center mb-4">{serverError}</p>
                         )}
                         <button type="submit" className="w-full border p-1 rounded-lg bg-black text-white mt-4 hover:opacity-75 font-medium">Signin</button>
                     </form>
-                    <p className="text-sm float-right p-1">Create an account? <button onClick={() => onClick(false)} className="underline font-bold">Signup</button></p>
+                    <p className="text-sm p-1">Create an account? <button onClick={() => onClick(false)} className="underline font-bold">Signup</button></p>
                 </div>
             </div> 
         </>

@@ -13,7 +13,7 @@ interface blogCardProps{
 const BlogCard: React.FC<blogCardProps> = ({blog, onClick}) => {
 
     return (    
-        <div onClick={() => onClick(false)} className="border-b py-2 px-2 w md:py-8 md:px-10 hover:bg-[#F3F4F6]">
+        <div onClick={() => onClick()} className="border-b py-2 px-2 w md:py-8 md:px-10 hover:bg-[#F3F4F6]">
             <div className="flex items-center gap-2">
                 <Avatar className="rounded-full" size="25" name={blog.author} />
                 <p>{blog.author}</p>
