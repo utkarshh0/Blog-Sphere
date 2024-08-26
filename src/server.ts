@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://blogg-sphere.netlify.app/',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));

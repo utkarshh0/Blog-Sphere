@@ -10,8 +10,8 @@ const App : React.FC = () => {
       <Nav />
       <BrowserRouter>
         <Routes>
-          <Route path="/api/v1/user" element={<Index />} />
-          <Route path="api/v1/user/blog" element={<Blog />} />
+          <Route path="/" element={<Index />} />
+          <Route path="/blog" element={<Blog />} />
         </Routes>
       </BrowserRouter>
     </>
