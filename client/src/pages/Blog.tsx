@@ -28,7 +28,7 @@ const Blog: React.FC = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await axios.get<BlogArray>('http://localhost:3000/blog', {
+                const response = await axios.get<BlogArray>('https://blog-sphere-noql.onrender.com/blog', {
                     headers: {
                         Authorization: localStorage.getItem('token') || ''
                     }

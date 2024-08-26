@@ -64,7 +64,7 @@ const BlogPost: React.FC<BlogPostProps> = ({onClick, currentBlog}) => {
         if(token){
             try {
                 await axios.put(
-                    `http://localhost:3000/blog/${blogData.id}`,
+                    `https://blog-sphere-noql.onrender.com/blog/${blogData.id}`,
                     { 
                         title: updatedData.title, 
                         content: updatedData.content, 
@@ -85,7 +85,7 @@ const BlogPost: React.FC<BlogPostProps> = ({onClick, currentBlog}) => {
     }
 
     return (
-        <>
+        <>http://localhost:3000/
             <div className="w-screen h-screen overflow-x-hidden p-20 my-1">
                 <button onClick={() => onClick(false)} className=" text-3xl hover:opacity-75 border-b rounded-lg"><IoMdArrowBack /></button>
                 <div className="flex justify-between my-1">

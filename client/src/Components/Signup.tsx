@@ -46,7 +46,7 @@ const Signup: React.FC<SignupProps> = ({ onClick }) => {
         e.preventDefault();
         if (validate()) {
             try {
-                await axios.post('http://localhost:3000/user/signup', formData);
+                await axios.post('https://blog-sphere-noql.onrender.com/user/signup', formData);
                 onClick(true);
                 setFormData({
                     username: '',

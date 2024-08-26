@@ -53,7 +53,7 @@ const AddBlog: React.FC<AddBlogProps> = ({ onClick }) => {
         if (token) {
             try {
                 await axios.post(
-                    'http://localhost:3000/blog/post',
+                    'https://blog-sphere-noql.onrender.com/blog/post',
                     {
                         title: formData.title,
                         content: formData.content,
