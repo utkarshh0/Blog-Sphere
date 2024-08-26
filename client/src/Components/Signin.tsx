@@ -39,12 +39,12 @@ const Signin: React.FC<SigninProps> = ({ onClick }) => {
         e.preventDefault();
         if (validate()) {
             try {
-                const response = await axios.post(`http://localhost:3000/api/v1/user/signin`, {
+                const response = await axios.post(`http://localhost:3000/user/signin`, {
                     email: formData.email,
                     password: formData.password
                 });
                 localStorage.setItem('token', `Bearer ${response.data.token}`);
-                navigate('blog');
+                navigate('/blog');
             } catch (error) {
                 const axiosError = error as AxiosError<ErrorResponse>;
                 setServerError(axiosError.response?.data?.error || 'Something went wrong. Please try again.');
@@ -68,7 +68,7 @@ const Signin: React.FC<SigninProps> = ({ onClick }) => {
     };
 
     return (
-        <> 
+        <> api/v1/
             <div className="h-full w-full flex flex-col justify-center items-center">
                 <div className="w-2/4">
                     <p className="text-3xl font-bold text-center py-3">Login</p>

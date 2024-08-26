@@ -64,7 +64,7 @@ const BlogPost: React.FC<BlogPostProps> = ({onClick, currentBlog}) => {
         if(token){
             try {
                 await axios.put(
-                    `http://localhost:3000/api/v1/user/blog/${blogData.id}`,
+                    `http://localhost:3000/blog/${blogData.id}`,
                     { 
                         title: updatedData.title, 
                         content: updatedData.content, 
@@ -76,7 +76,7 @@ const BlogPost: React.FC<BlogPostProps> = ({onClick, currentBlog}) => {
                         }
                     }
                 )
-                navigate('/api/v1/user/blog')
+                navigate('/blog')
             } catch (error: any) {
                 console.error('Error posting blog:', error.response?.data || error.message);
             }

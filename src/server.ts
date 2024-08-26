@@ -14,14 +14,15 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 app.use(cors({
-    origin: 'https://blogg-sphere.netlify.app/',
+    // origin: 'https://blogg-sphere.netlify.app/',
+    origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 app.use(express.json());
 
-app.use('/api/v1/user', userRoute);
-app.use('/api/v1/user/blog', authMiddleware, blogRoute);
+app.use('/user', userRoute);
+app.use('/blog', authMiddleware, blogRoute);
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

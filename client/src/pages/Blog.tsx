@@ -28,14 +28,14 @@ const Blog: React.FC = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await axios.get<BlogArray>('http://localhost:3000/api/v1/user/blog', {
+                const response = await axios.get<BlogArray>('http://localhost:3000/blog', {
                     headers: {
                         Authorization: localStorage.getItem('token') || ''
                     }
                 });
                 setBlogs(response.data);
             } catch (error : any) {
-                navigate('/api/v1/user');
+                navigate('/');
                 console.error('Error fetching blogs:', error.response?.data || error.message);
             }
         };

@@ -53,7 +53,7 @@ const AddBlog: React.FC<AddBlogProps> = ({ onClick }) => {
         if (token) {
             try {
                 await axios.post(
-                    'http://localhost:3000/api/v1/user/blog/post',
+                    'http://localhost:3000/blog/post',
                     {
                         title: formData.title,
                         content: formData.content,
@@ -68,7 +68,7 @@ const AddBlog: React.FC<AddBlogProps> = ({ onClick }) => {
                     }
                 );
                 onClick(false);
-                navigate('/api/v1/user/blog');
+                navigate('/blog');
             } catch (error) {
                 if (axios.isAxiosError(error)) {
                     console.error('Error posting blog:', error.response?.data?.error || error.message);
