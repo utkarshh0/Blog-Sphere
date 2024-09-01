@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "react"
 import LabelledInput from "./LabelledInput";
 import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";

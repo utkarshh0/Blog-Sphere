@@ -8,7 +8,7 @@ const Index: React.FC = () => {
     return(
 
         <>
-            <div className="w-screen h-screen  flex">
+            <div className="w-screen h-screen flex overflow-hidden">
                 <div className="w-full md:w-2/4">
                     {isSignin ? <Signin onClick={setIsSignin} /> : <Signup onClick={setIsSignin}/> }
                 </div>
