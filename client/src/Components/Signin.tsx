@@ -18,8 +18,8 @@ interface ErrorResponse {
 
 const Signin: React.FC<SigninProps> = ({ onClick }) => {
     const [formData, setFormData] = useState({
-        email: '',
-        password: ''
+        email: 'shm@gmail.com',
+        password: 'shm123'
     });
     const [formError, setFormError] = useState<FormErrorProps>({});
     const [serverError, setServerError] = useState('');
