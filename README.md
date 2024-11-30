@@ -42,13 +42,6 @@ Blog-Sphere is a full-stack blogging application built with the MERN stack (Mong
   - ESLint and Prettier for code formatting
   - Git for version control
 
-## Project Structure
-
-The project is organized as follows:
-
-blog-sphere/ │ ├── client/ # Frontend code │ ├── src/ │ │ ├── components/ # Reusable components │ │ ├── pages/ # Pages for routing │ │ ├── App.tsx # Main application file │ │ └── index.tsx # Entry point for React │ ├── public/ # Static assets │ └── tailwind.config.js # Tailwind CSS configuration │ ├── server/ # Backend code │ ├── controllers/ # Controllers for handling requests │ ├── models/ # Mongoose models │ ├── routes/ # API routes │ ├── middleware/ # Express middleware │ ├── server.ts # Entry point for the server │ └── config/ # Configuration files │ ├── .env # Environment variables ├── .gitignore # Git ignore file ├── package.json # Project dependencies ├── README.md # Project documentation └── tsconfig.json # TypeScript configuration
-
-
 
 ## Getting Started
 
